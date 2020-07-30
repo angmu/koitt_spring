@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	
+	<bean id="logAop" class="com.javalec.ex.LogAop"/>
+	
+	<aop:config>
+		<aop:aspect id="logger" ref="logAop">
+			<aop:pointcut expression="within(com.javalec.ex.*)" id="publicM"/>
+			<aop:around method="loggerAop" pointcut-ref="publicM"/>		
+		</aop:aspect>
+	</aop:config>
+	
+	<bean id="bookLoan" class="com.javalec.ex.BookLoan">
+		<property name="stu_num" value="1"/>
+		<property name="b_Num" value="b001"/>
+		<property name="b_Title" value="바람과함께사라지다"/>
+		<property name="division" value="문학"/>
+		<property name="loanDate" value="2020-05-10"/>
+		<property name="returnDate" value="2020-05-13"/>
+		<property name="arrears" value="5"/>
+	</bean>
+	<bean id="studentInfo" class="com.javalec.ex.StudentInfo">
+		<property name="stu_num" value="1"/>
+		<property name="name" value="홍길동"/>
+		<property name="major" value="컴공"/>
+		<property name="address" value="경기도 시흥시"/>
+		<property name="tel" value="010-1515-1515"/>
+	</bean>
+	<bean id="studentScore" class="com.javalec.ex.StudentScore">
+		<property name="stu_num" value="1"/>
+		<property name="kor" value="100"/>
+		<property name="eng" value="100"/>
+		<property name="math" value="100"/>
+		<property name="total" value="300"/>
+		<property name="avg" value="100.0"/>
+	</bean>
+</beans>

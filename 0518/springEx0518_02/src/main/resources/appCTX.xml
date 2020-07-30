@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- 이제 여기서 외부파일을 호출해서 사용 namespace 에서 context를 활성화 -->
+	<context:property-placeholder location="classpath:admin.properties,classpath:sub_admin.properties"/>
+	
+	<bean id="adminConnection" class="com.javalec.ex.AdminConnection">
+		<property name="admin_id">
+			<value>${admin.id}</value>
+		</property>
+		<property name="admin_pw">
+			<value>${admin.pw}</value>
+		</property>
+		<property name="sub_admin_id">
+			<value>${sub_admin.id}</value>
+		</property>
+		<property name="sub_admin_pw">
+			<value>${sub_admin.pw}</value>
+		</property>
+	</bean>
+</beans>

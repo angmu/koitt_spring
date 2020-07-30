@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	profile="window">
+
+	<bean id="serverInfo" class="com.javalec.ex.ServerInfo">
+		<property name="browser" value="크롬브라우저"/>
+		<property name="ipNum" value="211.108.107.1"/>
+		<property name="statement" value="사이트접속"/>
+	</bean>
+</beans>

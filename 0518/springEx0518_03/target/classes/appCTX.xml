@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<context:property-placeholder location="server1.properties,server2.properties"/>
+	
+	<bean id="serverConnection" class="com.javalec.ex.ServerConnection">
+		<property name="auth">
+			<value>${auth}</value>
+		</property>
+		<property name="driverClassName" value="${driverClassName}"/>
+		<property name="url">
+			<value>${url}</value>
+		</property>
+		<property name="username">
+			<value>${username1}</value> <!-- 그냥 username이면 제대로 안뜬다 'ㅁ' -->
+		</property>
+		<property name="password">
+			<value>${password}</value>
+		</property>
+		<property name="name">
+			<value>${name}</value>
+		</property>
+		<property name="type">
+			<value>${type}</value>
+		</property>
+		<property name="maxActive">
+			<value>${maxActive}</value>
+		</property>
+		<property name="maxWait">
+			<value>${maxWait}</value>
+		</property>
+	
+	</bean>
+	
+</beans>
