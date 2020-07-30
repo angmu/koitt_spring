@@ -1,0 +1,43 @@
+
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:orcl
+    username: ora_user
+    password: 1234
+
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 5
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+    static-path-pattern: /static/**
+    hiddenmethod:
+      filter:
+        enabled: true
+
+  devtools:
+    livereload:
+      enabled: true
+  freemarker:
+    cache: false
+
+  resources:
+    static-locations: classpath:/static/
+
+
+mybatis:
+  mapper-locations: mapper/**/*.xml
+  type-aliases-package: com.board.domain
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE

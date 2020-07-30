@@ -1,0 +1,9 @@
+mvc생성
+1.maven 업데이트, spring 버전 5.1.0
+2.web-inf폴더에 lib폴더 생성, 및 ojdbc6_g.jar 추가
+2 pom.xml에 dependency추가 (오라클,jdbc)
+3.controller -util
+-jdbctemplate추가>>setter,autowired
+-constant.java >jdbcTemplate(static)
+4.serlet-context추가
+-datasource,jdbcTemplate

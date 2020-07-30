@@ -1,0 +1,105 @@
+JDBCTemplate 설정
+
+스프링 - MVC Project 생성
+- pom.xml
+1.Maven update, spring 버전 5.1.0 변경
+
+2. WEB-INF>lib 폴더 ->ojdbc_6.java
+3. 라이브러리(오라클,jdbcTemplate)
+4. 패키지 - controller,util
+5. controller
+- jdbcTemplate 추가 -> setter,Autowired
+- Constant.java -> jdbcTemplate
+6. servlet-context.xml 추가
+- datasource, jdbcTemplate
+
+
+select -> template.query,queryForObject
+(new BeanPropertyRowMapper();
+
+insert,update,delete
+-> template.update
+(new PreparedStatementCreator()
+new PreparedStatementSetter() )
+
+
+-.-.-.-.-.--.--.-.----.---.---..-.---
+<!-- Oracle Driver -->
+
+<dependency>
+
+<groupId>ojdbc</groupId>
+
+<artifactId>ojdbc6</artifactId>
+
+<version>6</version>
+
+<scope>system</scope>
+
+<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ojdbc6_g.jar</systemPath>
+
+</dependency>
+
+
+
+  <!-- jdbc Template -->
+
+  <dependency>
+
+  <groupId>org.springframework</groupId>
+
+  <artifactId>spring-jdbc</artifactId>
+
+  <version>4.1.4.RELEASE</version>
+
+  </dependency>
+
+
+----------------------------------------------
+
+mybatis 설정
+>>>sql부터 다 auto가능 '3'!
+0-1.pom에 dependency 설정
+0-2 com.javalec.ex.mapper 패키지생성
+0-3 IDao.xml 생성
+0-4 servlet-context.xml에서 bean 객체 생성
+-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-
+
+<!-- mybatis -->
+<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <beans:property name="dataSource" ref="dataSource"/>
+    <beans:property name="mapperLocations" value="classpath:com/javalec/ex/mapper/*.xml"/>
+</beans:bean>
+<!-- mybatis template -->
+<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+    <beans:constructor-arg index="0" ref="sqlSessionFactory"/>
+</beans:bean>
+
+
+1.homecontroller 수정
+2.idao 인터페이스 생성
+3.homecontroller 수정
+4.dao 패키지에IDao 인터페이스 생성,dao의 메소드를 전부 넣음
+>>구현부는 mapper의 xml에 작성. (https://mybatis.org/mybatis-3/configuration.html 의)
+
+
+<!-- mybatis -->
+<dependency>
+
+    <groupId>org.mybatis</groupId>
+
+    <artifactId>mybatis</artifactId>
+
+    <version>3.4.5</version>
+
+   </dependency>
+
+   <dependency>
+
+    <groupId>org.mybatis</groupId>
+
+    <artifactId>mybatis-spring</artifactId>
+
+    <version>1.3.1</version>
+
+   </dependency>

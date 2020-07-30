@@ -1,0 +1,37 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.6.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+    id 'war'
+}
+
+group = 'com.board'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+    maven { url "https://code.lds.org/nexus/content/groups/main-repo"}
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    compileOnly 'org.springframework.boot:spring-boot-devtools'
+    compile 'org.springframework.boot:spring-boot-starter-jdbc:2.2.6.RELEASE'
+    compile 'com.oracle:ojdbc6:11.2.0.3'
+    compile 'org.mybatis:mybatis:3.5.4'
+    compile 'org.mybatis:mybatis-spring:2.0.4'
+    compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.2'
+    compile 'javax.servlet:jstl:1.2'
+    compile 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

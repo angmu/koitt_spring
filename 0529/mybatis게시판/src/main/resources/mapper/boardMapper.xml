@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.board.mapper.BoardMapper">
+
+    <insert id="boardInsert" parameterType="BoardVo">
+        insert into MVC_BOARD
+        values (MVC_BOARD_SEQ.nextval, #{bName}, #{bTitle}, #{bContent}, sysdate, 0,MVC_BOARD_SEQ.currval,0,0)
+    </insert>
+
+    <select id="boardList" resultType="BoardVo">
+        select * from (select ROWNUM rnum,b.* from (select * from mvc_board m order by bGroup desc, bid) b) where rnum
+        <![CDATA[ >= ]]>
+        #{p1} and rnum
+        <![CDATA[ <= ]]>
+        #{p2}
+    </select>
+
+    <select id="boardView" parameterType="int" resultType="BoardVo">
+        select * from MVC_BOARD where BID = #{bId}
+    </select>
+
+    <update id="hitUp" parameterType="int">
+        update MVC_BOARD set BHIT = BHIT+1 where BID= #{bId}
+    </update>
+
+    <update id="boardUpdate" parameterType="BoardVo">
+        update MVC_BOARD set BTITLE = #{bTitle}, bcontent = #{bContent} where bid = #{bId}
+    </update>
+
+    <delete id="boardDelete" parameterType="int">
+        delete MVC_BOARD where bid = #{bId}
+    </delete>
+
+    <update id="replyStepUp">
+        update mvc_board set bstep = bstep+1 where bgroup = #{p1} and bstep > #{p2} 
+    </update>
+
+    <insert id="boardReply" parameterType="BoardVo">
+        insert into mvc_board
+        values (MVC_BOARD_SEQ.nextval, #{bName}, #{bTitle}, #{bContent}, sysdate, 0 , #{bGroup}, #{bStep}+1,#{bIndent}+1)
+    </insert>
+
+    <select id="getCount" resultType="int">
+        select count(*) from MVC_BOARD
+    </select>
+</mapper>

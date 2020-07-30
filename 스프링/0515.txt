@@ -1,0 +1,65 @@
+스프링 생명주기(life cycle)와 범위(scope)
+
+>
+GenericXmlApplicationContext 로만 load와 refresh가능
+생성:GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
+설정:ctx.load("classpath:appCTX.xml")
+     ctx.refresh();//따로 설정.
+사용:Student student1 = (Student) ctx.getBean("student1");
+종료:ctx.close();
+
+스프링 빈 생명주기.
+
+implement  InitializingBean, DisposableBean을 해준다.
+
+afterPropertiesSet(){
+실행될때}
+
+destroy(){
+종료될때}
+
+*종료순서>>
+시작순서 역순으로 찍힌다.
+---------------------------------------
+ㄴStudent firsts=new Student();
+Student s1=firsts;
+Student s2=firsts;
+
+s1= s2
+
+8가지타입 >>>값이 들어간다
+그외(배열,어레이리스트) >> 주소값이 들어간다.
+----------------
+
+싱글톤>> 빈 -싱글톤임
+새로운연산자 생성x
+새 연산자는 그 클래스 내에서 1개만 생성
+불러올때 메소드로 받아옴..
+
+
+-----------------------
+
+외부파일>>빈생성>>메인메소드로 빈 호출
+
+ConfigurableApplicationContext ctx=GenericXmlApplicationContext();
+//환경을 가져옴
+ConfigurableEnvironment env=ctx.getEnvironment();
+//환경에 있는 모든 property를 가져옴 
+MutablePropertySources propertySources=env.getPropertySources(); //외부에서 받아온 모든 파일을 받아옴 (session받아오듯..ㅇㅇ..)
+propertySources.addLast(); //값을 넣고싶을때..
+
+사용>>
+생명주기 afterPropertiesSet()안에
+setAdminId(env.getProperty("admin.id"));
+
+
+//////////////////////
+
+프로파일 속성을 이용한 설정.
+
+			env
+			
+propertysource1		propertysource2		propertysource3
+
+
+클래스

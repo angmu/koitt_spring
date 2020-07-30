@@ -1,0 +1,126 @@
+*******************[DI 삽입] <<외부에서 데이터를 넣는것 (의존주입)
+
+*외부환경파일>>>>>xml로 데이터 삽입.
+
+기존 > class에서 값을받아서 xml로 호출
+abstractApplicationContext
+	↓
+ConfigrableApplicationContext  
+(외부파일을 가져오면서 context가 바뀜 -우측은 genericxmlapplicationcontext 동일)
+
+refresh()등을 사용하려면 왼쪽도 generic~~
+
+
+----------------------------------------
+
+오늘할것 >> 바로 값넣기 (class를 통하지않고 바로 값을 넣는다)
+
+appCTX.xml에서
+Namespaces에서 context체크,
+<context:property-placeholder location="classpath:admin.properties">
+로 외부파일을 선언.
+
+<property name="admin_id">
+  <value>${admin.id}</value>
+</property>
+
+이런 형태로 값을 주입.
+
+
+---------------------------------------
+annotation 으로 값 바로 넣기
+>> 순서 
+>AppCTX 클래스에 @Configration 
+>변수위에 @Value("${}")
+>PropertySourcesPlaceholderConfigurer를 static 메소드로 만들어서
+ClassPathResource를 location에 담아 설정!
+>가져올 bean생성
+
+
+@Configuration
+public class AppCTX {
+@Value("${auth}")
+private String auth;
+@Value("${driverClassName}")
+private String driverClassName;
+
+@Bean
+public static PropertySourcesPlaceholderConfigurer Properties() {
+PropertySourcesPlaceholderConfigurer configurer = new PropertySourcesPlaceholderConfigurer();
+
+Resource[] location = new Resource[2];
+
+location[0] = new ClassPathResource("server1.properties");
+location[1] = new ClassPathResource("server2.properties");
+// 외부파일이 1개일 경우 Resource location=new ClassPathResource("server1.properties");
+
+configurer.setLocations(location);
+
+return configurer;
+}
+
+
+@Bean
+public ServerInfo serverInfo() {
+ServerInfo serverInfo = new ServerInfo();
+serverInfo.setAuth(auth);
+serverInfo.setDriverClassName(driverClassName);
+return serverInfo;
+}
+}
+
+>>>MainClass 에서 불러올때는 annotationconfig
+
+
+---------------------------------------
+*동일한 스프링 빈을 여러개 만들어서 적절한 스프링 빈을 사용.
+
+스프링컨테이너
+(어떤 설정파일을 사용할지 결정함.
+setActiveProfiles(config);
+
+순서
+>appCTX.xml을 여럿 만든다
+<beans xmlns ~~
+> 끝에를 이케 엔터치고 profile="server"> 이런식으로 profile이름을 지정한다.
+
+MainClass
+>
+String config를 입력번호에 따라 switch 로 profile이름으로 변환
+
+
+
+==============================================================
+
+********[OOP]객체지향 프로그래밍
+
+변수 <1개의 데이터를 변수형태로 집어넣는것
+배열 <여러개의 변수를 집어넣는것 (같은형태)
+구조체 < 다른형태의 변수를 집어넣는것		▲c언어
+----------------------------------------------------------
+객체 <변수 뿐아니라 메소드도 넣을수 있음.	▼자바 (고급언어)
+
+
+>>다중상속이 안됨, 로그기록(sysout)을 많이 쓰고 지우기 귀찮음..
+
+ 	▽ OOP의 단점을 해결하기 위해 나옴
+
+AOP 핵심기능(프로그램)과 공통기능(ex-로그) 분리 
+(프로그램상에 공통기능이 쓰여있지는 않으나 실행시 공통기능에서 설정된 찍어낼곳을 알아서 찾아가서 찍어냄)
+
+Aspect :공통기능 
+Advice :공통기능의 기능자체
+(메소드 특정부분 >>pointcut)
+(메소드 모든 위치점>>joinpoint
+proxy로 출력을하고 target으로 proxy 를 실행할 곳을 지정
+
+>>>쓰려면 카페의 의존설정을 해야한다.
+
+<!-- AOP -->  <<메소드에만 적용가능
+  <dependency>
+   <groupId>org.aspectj</groupId>
+   <artifactId>aspectjweaver</artifactId>
+   <version>1.7.4</version>
+  </dependency>
+</dependencies> <<<여기안에 넣는당
+
