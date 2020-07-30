@@ -1,0 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<img src="images/ss.png">
+	<img src="images/KakaoTalk_22.png">
+	<img src="resources/KakaoTalk_20.png">
+	<img src="resources/images/KakaoTalk_22.png">
+	<p>list.jsp페이지 입니다</p>
+</body>
+</html>

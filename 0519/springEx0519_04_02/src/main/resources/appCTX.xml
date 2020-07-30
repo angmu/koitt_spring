@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<bean id="logAop" class="com.javalec.ex.LogAop"/>
+	
+	<aop:config>
+		<aop:aspect id="logger" ref="logAop">
+			<aop:pointcut expression="within(com.javalec.ex.*)" id="aopPoint"/>
+			<aop:around method="loggerAop" pointcut-ref="aopPoint"/>
+			<aop:after method="afterAdvice" pointcut-ref="aopPoint"/>
+			<aop:before method="beforeAdvice" pointcut-ref="aopPoint"/>
+		</aop:aspect>
+	</aop:config>
+	
+	
+	<bean id="book" class="com.javalec.ex.Book">
+		<property name="book_num" value="b1001"/>
+		<property name="name" value="홍길동"/>
+		<property name="book_class" value="소설"/>
+		<property name="author" value="홍저자"/>
+	</bean>
+	<bean id="rental" class="com.javalec.ex.Rental">
+		<property name="member_num" value="1001"/>
+		<property name="name" value="김유신"/>
+		<property name="book_ren" value="홍길동"/>
+		<property name="book_return" value="2020-05-30"/>
+		<property name="tel" value="010-111-1111"/>
+	</bean>
+</beans>

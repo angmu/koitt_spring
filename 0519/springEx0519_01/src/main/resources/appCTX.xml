@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	<bean id="logAop" class="com.javalec.ex.LogAop"/>
+	<!-- aop xml 선언 -->
+<!-- 	<aop:config> -->
+<!-- 		<aop:aspect id="asplog" ref="logAop"> -->
+<!-- 			<aop:pointcut expression="within(com.javalec.ex.*)" id="AopExAll"/> -->
+<!-- 			<aop:around method="loggerAop" pointcut-ref="AopExAll"/> -->
+<!-- 		</aop:aspect> -->
+<!-- 	</aop:config> -->
+	<aop:config>
+		<aop:aspect id="asplog" ref="logAop">
+			<aop:pointcut expression="execution(public void stu*(..))" id="AopExAll"/>
+			<aop:before method="beforeadvice" pointcut-ref="AopExAll"/>
+		</aop:aspect>
+	</aop:config>
+	<bean id="student" class="com.javalec.ex.Student">
+		<property name="stu_num" value="1001"/>
+		<property name="stu_name" value="홍길동"/>
+		<property name="major" value="컴퓨터공학과"/>
+		<property name="tel" value="010-1111-1111"/>
+		<property name="address" value="서울시"/>
+		<property name="email" value="hong@naver.com"/>
+	</bean>
+	<bean id="studentScore" class="com.javalec.ex.StudentScore">
+		<property name="stu_num" value="1001"/>
+		<property name="kor" value="100"/>
+		<property name="eng" value="100"/>
+		<property name="math" value="100"/>
+		<property name="total" value="300"/>
+		<property name="avg" value="100"/>
+	</bean>
+	<bean id="doctorRecord" class="com.javalec.ex.DoctorRecord">
+		<property name="member_num" value="2001"/>
+		<property name="mem_name" value="김유신"/>
+		<property name="doctor" value="홍닥터"/>
+		<property name="date" value="2020-05-19"/>
+	</bean>
+	
+</beans>

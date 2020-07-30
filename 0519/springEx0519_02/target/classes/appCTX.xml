@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<bean id="logAop" class="com.javalec.ex.LogAop"/>
+	
+	<aop:config>
+		<aop:aspect id="logaop1" ref="logAop">
+			<aop:pointcut expression="execution(public void not*(..))" id="aop1"/>
+			<aop:around method="loggeraop" pointcut-ref="aop1"/>
+		</aop:aspect>
+		<aop:aspect id="logaop2" ref="logAop">
+			<aop:pointcut expression="execution(public void jo*(..))" id="aop2"/>
+			<aop:before method="beforePrint" pointcut-ref="aop2"/>
+		</aop:aspect>
+		<aop:aspect id="logaop3" ref="logAop">
+			<aop:pointcut expression="execution(public void eve*(..))" id="aop3"/>
+			<aop:after method="afterPrint" pointcut-ref="aop3"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<bean id="eventBoard" class="com.javalec.ex.EventBoard">
+		<property name="b_num" value="2001"/>
+		<property name="b_title" value="크로와플  할인"/>
+		<property name="b_content" value="와플할인 1000원"/>
+		<property name="st_date" value="2020-05-18"/>
+		<property name="en_date" value="2020-05-22"/>
+	</bean>
+	<bean id="noticeBoard" class="com.javalec.ex.NoticeBoard">
+		<property name="b_num" value="1001"/>
+		<property name="b_title" value="크로와플 후기"/>
+		<property name="b_content" value="와플 크기 너무 작으심"/>
+		<property name="b_date" value="2020-05-19"/>
+		<property name="b_name" value="홍길동"/>
+	</bean>
+	
+	<bean id="join" class="com.javalec.ex.Join">
+		<property name="mem_num" value="3001"/>
+		<property name="m_id" value="aabdc11"/>
+		<property name="m_pw" value="aa123!"/>
+		<property name="m_name" value="강감찬"/>
+		<property name="j_date" value="2020-05-18"/>
+	</bean>
+</beans>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	<aop:aspectj-autoproxy/>
+	<bean id="logAop" class="com.javalec.ex.LogAop"/>
+	
+	<bean id="book" class="com.javalec.ex.Book">
+		<property name="bNum" value="1001"/>
+		<property name="btitle" value="해리포터"/>
+		<property name="btype" value="문학"/>
+		<property name="author" value="J.K롤링"/>
+	</bean>
+	<bean id="rental" class="com.javalec.ex.Rental">
+		<property name="mem_num" value="5001"/>
+		<property name="name" value="홍길동"/>
+		<property name="r_book" value="해리포터"/>
+		<property name="r_date" value="2020-05-25"/>
+		<property name="tel" value="010-1111-1111"/>
+	</bean>
+	
+</beans>
