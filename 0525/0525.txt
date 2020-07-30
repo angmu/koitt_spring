@@ -1,0 +1,14 @@
+spring 바뀌는것
+
+>>
+데이터받기
+1. request
+2. requestParam
+3. dto
+
+
+>>기존 connection풀 context.xml 파일에서 선언
+>변경:외부파일에서 가져오기 혹은 
+
+
+@Autowired <<빈 property에 따로 선언안해도 알아서 값을 넣어주는 어노테이션

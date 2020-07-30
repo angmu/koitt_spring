@@ -1,0 +1,82 @@
+
+Model
+> object모든것을 받을수있음
+
+>>spring mvc와 jsp 비교
+
+1.contentpath 뒤의 주소비교를 requestMapping으로 한다.
+(BFrontCommand 에서 con으로 받아서 비교할필요없음.)
+
+
+2.jsp와 달리 자동으로 dispatcher 로 들어온다
+(BFrontCommand 에서 requestdispatcher로 받을 필요x)
+
+------------------------------------------------------
+
+ModelAndView과 Model model을 혼합해서 쓰면 
+>>get,post방식을 구분해서 쓸수있음(매개변수가 달라서 오버로딩가능)
+
+
+======================================================
+
+공통으로 사용할 폴더 (폴더의 깊이가 깊은경우)를 @Controller밑에 @RequestMapping으로 지정하면 알아서 그 폴더명이 주소에 붙는다 :>
+@Controller
+@RequestMapping("/notice")
+public class NController {
+
+@RequestMapping("/noticeView")
+	public String noticeView() {
+
+		return "notice/noticeView";
+	}
+
+
+>>> /notice/noticeView.jsp로 간다.
+
+--------------------------------------------
+a 링크 걸때 주의점
+
+<a href="event/view">이벤트</a>
+<a href="/event/modelView">이벤트모델뷰</a> << 맨앞에 /를 넣으면 contextpath가 주소에서 사라져서 404에러가 뜬다.
+
+--------------------------------------------
+form의 action 부분 주의
+>>폴더명은 빼고 파일명만! 
+
+---------------------------------------------
+
+********폼데이터 받기
+
+1. httpservletRequest
+>>get방식과 post방식 >> 스프링4.3부터  RequestMapping을 postMappong,getMapping으로 받기도함(이경우 method방식이 지정된것)
+>>model, 혹은 modeland
+
+2. @requestParam("")String id,
+(모델의 경우 model.getAttribute?
+
+3. dto객체로 받기.
+매개변수에 Student student 이런식으루 넣는다.
+
++
+4. @pathVariable   
+주소값/{ㅁ} << 주소값 이후 ㅁ는 변수로 본다.
+
+@RequestMapping("student/{studentId}")
+public String pathViewOk(@PathVariable String studentId, Model model) {
+
+model.addAttribute("studentId", studentId);
+return "student/pathViewOk";
+}
+
++페이지 이동 redirect:키워드 
+>
+if(check==0){
+return "redirect:studentOK";}
+return "redirect:studentNg";
+
+
+
+
+----------------------------------------------
+
+
