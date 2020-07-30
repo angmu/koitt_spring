@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- class내에 변수가 없을 경우 이케 끝난다. -->
+	<bean id="calculator" class="com.javalec.ex.Calculator"></bean>
+	<bean id="myCalculator" class="com.javalec.ex.MyCalculator">
+		<!-- 변수의 경우 -->
+		<property name="firstNum" value="10"/>
+		<property name="secondNum" value="2"/>
+		<!-- 객체의경우 -->
+		<property name="calculator">
+			<!-- 상단에 선언한 cal을 넣겟다는뜻 -->
+			<ref bean="calculator"/>
+		</property>
+	</bean>
+	
+
+</beans>

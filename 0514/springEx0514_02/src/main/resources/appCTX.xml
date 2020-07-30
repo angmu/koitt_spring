@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="avante_opt1" class="com.javalec.ex.Avante_opt1"/>
+	<bean id="avante_opt2" class="com.javalec.ex.Avante_opt2"/>
+	<bean id="avante_opt3" class="com.javalec.ex.Avante_opt3"/>
+	
+	<bean id="avante" class="com.javalec.ex.Avante_opt1"/>
+</beans>

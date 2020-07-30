@@ -1,0 +1,26 @@
+car()인터페이스
+-run()
+-stop()
+use()
+
+--아래는 car를 상속받는 class
+truck()
+200km
+늦게멈춤
+use
+-짐을 옮길수 잇음
+-덮개기능
+
+taxi()
+250km
+빨리멈춤
+use
+-미터기 기능
+
+ambulence()
+300km
+빨리멈춤
+use
+-싸이렌 기능
+
+Main에서 호출

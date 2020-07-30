@@ -1,0 +1,3 @@
+
+		AbstractApplicationContext ctx = new GenericXmlApplicationContext("classpath:appCTX.xml","classpath:appCTX2.xml");
+		위처럼 그냥 ,쓰고 쓰면된다

@@ -1,0 +1,29 @@
+DI 설정방법
+
+*xml파일
+>생성자나 setter로
+<construct-arg value="ss">
+<property name="a" value="ss">
+
+가져올때는
+abstractapplicationcontext ctx=new genericxmlapplicationcontext(classpath:appCTX.xml);
+
+
+*어노테이션
+@construct
+class명 위에 선언
+
+@bean
+메소드위에 선언 ->>객체이름
+
+가져올때는
+Annotationapplication ctx=new Annotationapplication(configCTX.class);
+
+*xml내에 java 넣기
+
+>어노테이션으로 생성
+>xml에 어노테이션이있는 클래스로 bean 선언(name은 넣지않음)
+>xml파일내 name에 가서 context를 체크!
+>main에서 xml불러오듯이 하면된다.
+
+*java내에 xml넣기

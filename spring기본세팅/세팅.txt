@@ -1,0 +1,12 @@
+***오라클, 이클립스, node.js등 저장위치를 
+
+1.프로젝트>spring legacy project>mvc spring
+
+2.pom.xml 세팅-오라클,jdbc template, mybatis,파일업로드
+
+3.db연결
+>>oracle의 경우 
+main>webapp>web-inf>lib폴더 생성후 6_g 넣기
+
+4.servlet-context 
+>>css,img,js 등 폴더위치 경로세팅

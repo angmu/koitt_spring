@@ -1,0 +1,31 @@
+성적프로그램]]
+
+메인클래스 Main
+출력>>
+학번
+이름
+국어
+영어
+수학
+합계
+평균
+결과
+
+
+학생클래스 Stu_score
+stu_num
+stu_name
+kor
+eng
+math
+total
+avg
+-객체선언 Score_process
+
+성적처리클래스 Score_process
+
+90A
+80B
+70c
+60d
+f

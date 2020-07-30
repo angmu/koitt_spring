@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="student1" class="com.javalec.ex.Student">
+		<constructor-arg value="홍길동"/>
+		<constructor-arg value="30"/>
+		<constructor-arg>
+			<list>
+				<value>웹툰</value>
+				<value>게임</value>
+				<value>자전거</value>
+				<value>독서</value>
+			</list>
+		</constructor-arg>
+		<property name="height" value="178"/>
+		<property name="weight" value="78"/>
+	</bean>
+	<bean id="student2" class="com.javalec.ex.Student">
+		<!-- 순서를 안지킬때는 이름을써야한다. -->
+		<constructor-arg name="age" value="33"/>
+		<constructor-arg name="name" value="김유신"/>
+		<constructor-arg>
+			<list>
+				<value>조깅</value>
+				<value>수영</value>
+				<value>독서</value>
+			</list>
+		</constructor-arg>
+		<property name="height" value="187"/>
+		<property name="weight" value="75"/>
+	</bean>
+	
+	<bean id="studentInfo" class="com.javalec.ex.StudentInfo">
+		<property name="student">
+			<ref bean="student1"/>
+		</property>
+	</bean>
+</beans>
